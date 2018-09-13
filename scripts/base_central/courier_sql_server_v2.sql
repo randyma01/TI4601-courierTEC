@@ -17,14 +17,14 @@ Miembros:
 */
 
 --------------------------------------------------------
-----------Inicio: Creación de la base de datos----------
+--------------Creación de la base de datos--------------
 --------------------------------------------------------
 
 CREATE DATABASE couriertecDB;
 GO
 
 --------------------------------------------------
-----------Inicio: Creación de las tablas----------
+--------------Creación de las tablas--------------
 --------------------------------------------------
 
 -- Tabla de las Provincias --
@@ -37,11 +37,11 @@ GO
 -- Tabla de los CLientes --
 CREATE TABLE Clientes(
 	IdCliente INT NOT NULL PRIMARY KEY,
-	Cedula INT NOT NULL, 						-- esta prodria ser la llave primaria ¿?
+	Cedula INT NOT NULL,
 	Nombre VARCHAR(15) NOT NULL,
 	Apellido VARCHAR(15) NOT NULL,
 	Telefono VARCHAR(11) NOT NULL,
-	-- Tipo VARCHAR(11) NOT NULL 		-- puede ser un emun(bronce, oro, platino)
+	Tipo VARCHAR(6) NOT NULL 				--(bronce, oro, platino)
 	FechaNacimiento DATE NOT NULL,
 	IdPronvincia INT NOT NULL,
 	FOREIGN KEY (IdProvincia) REFERENCES Provincia(IdProvincia)
@@ -53,7 +53,7 @@ CREATE TABLE Administrador(
 	IdAdmin INT IDENTITY PRIMARY KEY,
 	Nombre VARCHAR(15) NOT NULL,
 	Apellido VARCHAR(15) NOT NULL,
-	Cedula INT NOT NULL,							-- esta prodria ser la llave primaria ¿?
+	Cedula INT NOT NULL,
 );
 GO
 
@@ -70,11 +70,11 @@ GO
 CREATE TABLE Paquete(
 	IdPaquete INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	FechaIngreso DATE NOT NULL,
-	Tipo VARCHAR(30) NOT NULL
+	Tipo VARCHAR(30) NOT NULL 				--(ropa, juegetes, herramientas, etc).
 	Descripcion VARCHAR(MAX) NOT NULL,
 	Peso INT NOT NULL,
 	Precio INT NOT NULL,
-	-- Estados VARCHAR (20) NOT NULL, 		-- puede ser un emun(en camino, en sucursal, retirado)
+	Estados VARCHAR (20) NOT NULL, 		--(en camino, en sucursal, retirado)
 );
 GO
 
@@ -105,4 +105,21 @@ CREATE TABLE Admi_Sucursal(
 	FOREIGN KEY (IdAdmin) REFERENCES Administrador(IdAdmin),
 	FOREIGN KEY (IdSucursal) REFERENCES Sucursal(IdSucursal),
 );
+GO
+
+---------------------------------------------------
+---------------Llenado de las tablas---------------
+---------------------------------------------------
+
+-- LLenado tabla de Pronvicias --
+INSERT INTO Provincia (Nombre) VALUES
+('Heredia'),('San José'),('Cartago'),('Alajuela'),('Limón'),('Puntarenas'),('Guanacaste');
+GO
+
+-- Llenado tabla  de los Administradores --
+INSERT INTO Administrador(Nombre, Apellido, Cedula) VALUES
+('Hazel', 'Arias', 123456378),
+('Karla', 'Araya', 178540922),
+('Paula', 'Ramírez', 177339922),
+('Randy', 'Martínez', 100729944);
 GO
