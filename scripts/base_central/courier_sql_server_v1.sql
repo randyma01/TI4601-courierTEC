@@ -89,11 +89,11 @@ CREATE TABLE Cliente_Paquete(
 GO
 
 -- Tabla de los Paquetes por Sucursal --
-CREATE TABLE Cliente_Paquete(
+CREATE TABLE Paquete_Sucursal(
 	IdSucursal INT NOT NULL,
 	IdPaquete INT NOT NULL,
 	Monto INT NOT NULL,
-	FOREIGN KEY (IdCliente) REFERENCES Cliente(IdCliente),
+	FOREIGN KEY (IdPaquete) REFERENCES Paquete(IdPaquete),
 	FOREIGN KEY (IdSucursal) REFERENCES Sucursal(IdSucursal),
 );
 GO
