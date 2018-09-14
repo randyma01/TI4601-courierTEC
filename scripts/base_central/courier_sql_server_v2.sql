@@ -122,7 +122,3 @@ INSERT INTO Administrador(Nombre, Apellido, Cedula) VALUES
 ('Paula', 'Ramírez', 177339922),
 ('Randy', 'Martínez', 100729944);
 GO
-
--- Llenado tabla de los Clientes --
-INSERT INTO Clientes (Cedula, Nombre, Apellido, Telefono, Tipo, FechaNacimiento, IdProvincia) VALUES
-('489765422','Andy','Quesada','00000000','Oro', TODAY, ),
