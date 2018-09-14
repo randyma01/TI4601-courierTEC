@@ -166,16 +166,16 @@ INSERT INTO Sucursarl (FechaIngreso, Tipo, Descripcion, Peso, Precio, Monto, Est
 GO
 
 -- Llenado tabla de los Clientes por Sucursal --
-INSET INTO Cliente_Sucursal (IdCliente, IdSucursal) VALUES
+INSERT INTO Cliente_Sucursal (IdCliente, IdSucursal) VALUES
 (1,1), (2,1), (3,2), (4,2);
 GO
 
 -- Llenado tabla de los Clientes por Paquetes --
-INSET INTO Cliente_Sucursal (IdCliente, IdSucursal) VALUES
+INSERT INTO Cliente_Sucursal (IdCliente, IdSucursal) VALUES
 (1,1), (2,2), (3,3), (4,4);
 GO
 
 -- Llenado tabla de los Paquetes por Sucursal --
-INSET INTO Paquete_Sucursal (IdPaquete, IdSucursal) VALUES
+INSERT INTO Paquete_Sucursal (IdPaquete, IdSucursal) VALUES
 (1,1), (2,1), (3,2), (4,2);
 GO
