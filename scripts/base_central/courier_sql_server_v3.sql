@@ -23,6 +23,13 @@ Miembros:
 CREATE DATABASE couriertecDB;
 GO
 
+---------------------------------------------------
+--------------Uso de la base de datos--------------
+---------------------------------------------------
+
+USE couriertecDB;
+GO
+
 --------------------------------------------------
 --------------Creación de las tablas--------------
 --------------------------------------------------
@@ -36,7 +43,7 @@ GO
 
 -- Tabla de los CLientes --
 CREATE TABLE Cliente(
-	IdCliente IINT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+	IdCliente INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	Cedula INT NOT NULL,
 	Nombre VARCHAR(15) NOT NULL,
 	Apellido VARCHAR(15) NOT NULL,
@@ -83,7 +90,7 @@ GO
 CREATE TABLE Paquete(
 	IdPaquete INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	FechaIngreso DATE NOT NULL,
-	Tipo VARCHAR(30) NOT NULL 				--(ropa, juegetes, herramientas, etc).
+	Tipo VARCHAR(30) NOT NULL, 				--(ropa, juegetes, herramientas, etc).
 	Descripcion VARCHAR(1000) NOT NULL,
 	Peso INT NOT NULL,
 	Precio INT NOT NULL,
@@ -128,6 +135,12 @@ INSERT INTO Provincia (Nombre) VALUES
 ('Heredia'),('San José'),('Cartago'),('Alajuela'),('Limón'),('Puntarenas'),('Guanacaste');
 GO
 
+-- Llenado tabla de los Sucursal --
+INSERT INTO Sucursal (Nombre, Telefono, Correo) VALUES
+('Sede San Jose', 78764532, 'csj@couriertec.com' ),
+('Sede Cartago', 23432123, 'cca@couriertec.com');
+GO
+
 -- Llenado tabla  de los Administradores --
 INSERT INTO Administrador(Nombre, Apellido, Cedula, IdSucursal) VALUES
 ('Hazel', 'Arias', 123456378, 1),
@@ -146,21 +159,16 @@ GO
 
 -- Llenado tabla  de los Empleado --
 INSERT INTO Empleado(Nombre, Apellido, Cedula, IdSucursal) VALUES
-('Sof', 'Cor', 112233444),
-('Est', 'Sol', 888775553),
-('Dan', 'Car', 908909889),
-('Ang', 'Rod', 098734122);
+('Sof', 'Cor', 112233444, 1),
+('Est', 'Sol', 888775553, 2),
+('Dan', 'Car', 908909889, 2),
+('Ang', 'Rod', 098734122, 1);
 GO
 
--- Llenado tabla de los Sucursal --
-INSERT INTO Sucursal (Nombre, Telefono, Correo) VALUES
-(,'Sede San Jose', 78764532, 'csj@couriertec.com' ),
-(,'Sede Cartago', 23432123, 'cca@couriertec.com'),
-
 -- Llenado tablas de los Paquetes --
-INSERT INTO Sucursarl (FechaIngreso, Tipo, Descripcion, Peso, Precio, Monto, EstadoPaquete) VALUES
+INSERT INTO Paquete (FechaIngreso, Tipo, Descripcion, Peso, Precio, Monto, EstadoPaquete) VALUES
 (GETDATE(), 'Ropa', 'Tennis corredor', 2, 35000, 50000, 'Camino'),
-(GETDATE(), 'Juegos', 'Juego de mesa', 1, 15000, 30000, 'Sucursar'),
+(GETDATE(), 'Juegos', 'Juego de mesa', 1, 15000, 30000, 'Sucursal'),
 (GETDATE(), 'Ropa', 'Jeans', 4, 30000, 80000, 'Sucursal'),
 (GETDATE(), 'Electronico', 'Pantalla', 20, 1000000, 400000, 'Retirado');
 GO
@@ -171,7 +179,7 @@ INSERT INTO Cliente_Sucursal (IdCliente, IdSucursal) VALUES
 GO
 
 -- Llenado tabla de los Clientes por Paquetes --
-INSERT INTO Cliente_Sucursal (IdCliente, IdSucursal) VALUES
+INSERT INTO Cliente_Paquete (IdCliente, IdPaquete) VALUES
 (1,1), (2,2), (3,3), (4,4);
 GO
 
