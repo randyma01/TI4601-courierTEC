@@ -41,7 +41,7 @@ CREATE TABLE Clientes(
 	Nombre VARCHAR(15) NOT NULL,
 	Apellido VARCHAR(15) NOT NULL,
 	Telefono VARCHAR(11) NOT NULL,
-	Tipo VARCHAR(6) NOT NULL 				--(bronce, oro, platino)
+	Tipo VARCHAR(11) NOT NULL, 					-- puede ser (bronce, oro, platino)
 	FechaNacimiento DATE NOT NULL,
 	IdPronvincia INT NOT NULL,
 	FOREIGN KEY (IdProvincia) REFERENCES Provincia(IdProvincia)
@@ -50,7 +50,7 @@ GO
 
 -- Tabla de los Administradores --
 CREATE TABLE Administrador(
-	IdAdmin INT IDENTITY PRIMARY KEY,
+	IdAdmin INT IDENTITY(1,1) PRIMARY KEY,
 	Nombre VARCHAR(15) NOT NULL,
 	Apellido VARCHAR(15) NOT NULL,
 	Cedula INT NOT NULL,
@@ -71,10 +71,11 @@ CREATE TABLE Paquete(
 	IdPaquete INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	FechaIngreso DATE NOT NULL,
 	Tipo VARCHAR(30) NOT NULL 				--(ropa, juegetes, herramientas, etc).
-	Descripcion VARCHAR(MAX) NOT NULL,
+	Descripcion VARCHAR(1000) NOT NULL,
 	Peso INT NOT NULL,
 	Precio INT NOT NULL,
-	Estados VARCHAR (20) NOT NULL, 		--(en camino, en sucursal, retirado)
+	Monto INT NOT NULL,
+	EstadoPaquete VARCHAR (20) NOT NULL, 		--(en camino, en sucursal, retirado)
 );
 GO
 
@@ -82,7 +83,6 @@ GO
 CREATE TABLE Cliente_Paquete(
 	IdCliente INT NOT NULL,
 	IdPaquete INT NOT NULL,
-	Monto INT NOT NULL,
 	FOREIGN KEY (IdCliente) REFERENCES Cliente(IdCliente),
 	FOREIGN KEY (IdPaquete) REFERENCES Paquete(IdPaquete),
 );
@@ -92,7 +92,6 @@ GO
 CREATE TABLE Paquete_Sucursal(
 	IdSucursal INT NOT NULL,
 	IdPaquete INT NOT NULL,
-	Monto INT NOT NULL,
 	FOREIGN KEY (IdPaquete) REFERENCES Paquete(IdPaquete),
 	FOREIGN KEY (IdSucursal) REFERENCES Sucursal(IdSucursal),
 );
@@ -111,7 +110,7 @@ GO
 ---------------Llenado de las tablas---------------
 ---------------------------------------------------
 
--- LLenado tabla de Pronvicias --
+-- LLenado tabla de las Pronvicias --
 INSERT INTO Provincia (Nombre) VALUES
 ('Heredia'),('San José'),('Cartago'),('Alajuela'),('Limón'),('Puntarenas'),('Guanacaste');
 GO
@@ -123,3 +122,7 @@ INSERT INTO Administrador(Nombre, Apellido, Cedula) VALUES
 ('Paula', 'Ramírez', 177339922),
 ('Randy', 'Martínez', 100729944);
 GO
+
+-- Llenado tabla de los Clientes --
+INSERT INTO Clientes (Cedula, Nombre, Apellido, Telefono, Tipo, FechaNacimiento, IdProvincia) VALUES
+('489765422','Andy','Quesada','00000000','Oro', TODAY, ),
