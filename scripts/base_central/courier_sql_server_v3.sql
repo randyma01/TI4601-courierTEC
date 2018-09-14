@@ -29,28 +29,37 @@ GO
 
 -- Tabla de las Provincias --
 CREATE TABLE Provincia(
-	IdProvincia INT NOT NULL IDENTITY(1,1) PRIMARY KEY
+	IdProvincia INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	Nombre VARCHAR (12)
 );
 GO
 
 -- Tabla de los CLientes --
 CREATE TABLE Cliente(
-	IdCliente INT NOT NULL PRIMARY KEY,
+	IdCliente IINT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	Cedula INT NOT NULL,
 	Nombre VARCHAR(15) NOT NULL,
 	Apellido VARCHAR(15) NOT NULL,
 	Telefono VARCHAR(11) NOT NULL,
 	Tipo VARCHAR(11) NOT NULL, 					-- puede ser (bronce, oro, platino)
 	FechaNacimiento DATE NOT NULL,
-	IdPronvincia INT NOT NULL,
+	IdProvincia INT NOT NULL,
 	FOREIGN KEY (IdProvincia) REFERENCES Provincia(IdProvincia)
+);
+GO
+
+-- Tabla de las Sucursales --
+CREATE TABLE Sucursal(
+	IdSucursal INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+	Nombre VARCHAR(30) NOT NULL,
+	Telefono VARCHAR(11) NOT NULL,
+	Correo VARCHAR(25) NOT NULL
 );
 GO
 
 -- Tabla de los Empleados --
 CREATE TABLE Empleado(
-	IdEmpleado INT IDENTITY(1,1) PRIMARY KEY,
+	IdEmpleado INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	Nombre VARCHAR(15) NOT NULL,
 	Apellido VARCHAR(15) NOT NULL,
 	Cedula INT NOT NULL,
@@ -61,21 +70,12 @@ GO
 
 -- Tabla de los Administradores --
 CREATE TABLE Administrador(
-	IdAdmin INT IDENTITY(1,1) PRIMARY KEY,
+	IdAdmin INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	Nombre VARCHAR(15) NOT NULL,
 	Apellido VARCHAR(15) NOT NULL,
 	Cedula INT NOT NULL,
 	IdSucursal INT NOT NULL,
 	FOREIGN KEY (IdSucursal) REFERENCES Sucursal(IdSucursal)
-);
-GO
-
--- Tabla de las Sucursales --
-CREATE TABLE Sucursal(
-	IdSucursal NOT NULL IDENTITY(1,1) PRIMARY KEY,
-	Nombre VARCHAR(30) NOT NULL,
-	Telefono VARCHAR(11) NOT NULL,
-	Correo VARCHAR(25) NOT NULL
 );
 GO
 
