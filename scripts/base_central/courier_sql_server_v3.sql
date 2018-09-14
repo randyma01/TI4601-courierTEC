@@ -12,8 +12,8 @@ Miembros:
 	Randy Martínez Sandí
 
 Índice:
-		1- Creación de las tablas.
-    2- Llenado de Datos.
+	1- Creación de las tablas.
+	2- Llenado de Datos.
 */
 
 --------------------------------------------------------
