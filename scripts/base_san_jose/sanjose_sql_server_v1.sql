@@ -40,7 +40,7 @@ GO
 
 -- Tabla de los CLientes de SanJose --
 CREATE TABLE Cliente_SanJose(
-	IdCliente INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+	IdCliente INT NOT NULL PRIMARY KEY,
 	Cedula INT NOT NULL,
 	Nombre VARCHAR(15) NOT NULL,
 	Apellido VARCHAR(15) NOT NULL,
@@ -53,7 +53,7 @@ GO
 
 -- Tabla de la Sucursal de SanJose --
 CREATE TABLE Sucursal_SanJose(
-	IdSucursal INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+	IdSucursal INT NOT NULL PRIMARY KEY,
 	Nombre VARCHAR(30) NOT NULL,
 	Telefono VARCHAR(11) NOT NULL,
 	Correo VARCHAR(25) NOT NULL,
@@ -63,7 +63,7 @@ GO
 
 -- Tabla de los Empleados --
 CREATE TABLE Empleado_SanJose(
-	IdEmpleado INT NOT NULL IDENTITY(1,1)PRIMARY KEY,
+	IdEmpleado INT NOT NULL PRIMARY KEY,
 	Nombre VARCHAR(15) NOT NULL,
 	Apellido VARCHAR(15) NOT NULL,
 	Cedula INT NOT NULL,
@@ -72,7 +72,7 @@ GO
 
 -- Tabla de los Paquetes --
 CREATE TABLE Paquete_SanJose(
-	IdPaquete INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+	IdPaquete INT NOT NULL  PRIMARY KEY,
 	FechaIngreso DATE NOT NULL,
 	Tipo VARCHAR(30) NOT NULL, 				--(ropa, juegetes, herramientas, etc).
 	Descripcion VARCHAR(1000) NOT NULL,
@@ -87,8 +87,6 @@ GO
 CREATE TABLE Cliente_Paquete_SanJose(
 	IdCliente INT NOT NULL,
 	IdPaquete INT NOT NULL,
-	FOREIGN KEY (IdCliente) REFERENCES Cliente_SanJose(IdCliente),
-	FOREIGN KEY (IdPaquete) REFERENCES Paquete_SanJose(IdPaquete)
 );
 GO
 
@@ -97,46 +95,54 @@ GO
 ------------------(Frgamentación)------------------
 ---------------------------------------------------
 
--- Llenando tabla de los Clientes de SanJose --
-INSERT INTO couriertecSanJoseDB.dbo.Cliente
-SELECT TT1.*, TT2.* FROM
-(SELECT Cliente.IdCliente, Cedula, Nombre,
-Apellido,  Telefono, Tipo, FechaNacimiento FROM Cliente
-INNER JOIN Cliente_Sucursal ON Cliente.IdCliente = Cliente_Sucursal.IdCliente
-WHERE Cliente_Sucursal.IdSucursal = 1) AS [TT1],
-(SELECT Provincia.Nombre AS 'Provincia' FROM Provincia
-INNER Join Cliente on Cliente.IdProvincia = Provincia.IdProvincia
-INNER JOIN Cliente_Sucursal ON Cliente.IdCliente = Cliente_Sucursal.IdCliente
-WHERE Cliente_Sucursal.IdSucursal = 1) AS [TT2];
-GO
-
 -- Llenando tabla de la Sucursal de SanJose --
 INSERT INTO couriertecSanJoseDB.dbo.Sucursal_SanJose
 SELECT TT1.* ,TT2.* FROM
 (SELECT IdSucursal  AS 'IdSucursal', Nombre AS 'Nombre', Telefono AS 'Telefono', Correo AS 'Correo'
-FROM Sucursal WHERE Sucursal.IdSucursal = 1) AS [TT1],
-(SELECT SUM(Monto) AS 'Recaudado' FROM Paquete
-INNER JOIN Paquete_Sucursal ON Paquete.IdPaquete = Paquete_Sucursal.IdPaquete
-WHERE Paquete_Sucursal.IdSucursal = 1) AS [TT2];
+FROM [RANDYMARTZ8AEA].[couriertecDB].[dbo].[Sucursal]
+ WHERE Sucursal.IdSucursal = 1) AS [TT1],
 
+(SELECT SUM(Monto) AS 'Recaudado'
+FROM [RANDYMARTZ8AEA].[couriertecDB].[dbo].[Paquete]
+INNER JOIN [RANDYMARTZ8AEA].[couriertecDB].[dbo].[Paquete_Sucursal] ON Paquete.IdPaquete = Paquete_Sucursal.IdPaquete
+WHERE Paquete_Sucursal.IdSucursal = 1) AS [TT2];
 GO
 
 -- Llenado tabla de los Empleados SanJose --
 INSERT INTO couriertecSanJoseDB.dbo.Empleado_SanJose
 SELECT Empleado.IdEmpleado, Nombre, Apellido, Cedula
-FROM Empleado
+FROM [RANDYMARTZ8AEA].[couriertecDB].[dbo].[Empleado]
 WHERE Empleado.IdSucursal = 1;
 GO
 
 -- Llenado tabla de los Paquetes de SanJose --
-INSERT INTO courierTEC.dbo.Paquete_SanJose
-SELECT Paquete.IdPaquete, FechaIngreso, Tipo, Descripcion ,Peso, Precio ,Monto, EstadoPaquete FROM Paquete
-INNER JOIN Paquete_Sucursal ON Paquete.IdPaquete = Paquete_Sucursal.IdPaquete
+INSERT INTO couriertecSanJoseDB.dbo.Paquete_SanJose
+SELECT Paquete.IdPaquete, FechaIngreso, Tipo, Descripcion ,Peso, Precio ,Monto, EstadoPaquete
+FROM [RANDYMARTZ8AEA].[couriertecDB].[dbo].[Paquete]
+INNER JOIN [RANDYMARTZ8AEA].[couriertecDB].[dbo].[Paquete_Sucursal] ON Paquete.IdPaquete = Paquete_Sucursal.IdPaquete
 WHERE Paquete_Sucursal.IdSucursal = 1;
 
 -- Llenado tabla de los Paquetes por Cliente de SanJose --
-INSERT INTO courierTEC.db.Cliente_Paquete_SanJose
-SELECT Cliente_Paquete.IdCliente, Cliente_Paquete.IdPaquete FROM Cliente_Paquete
-INNER JOIN Cliente ON Cliente.IdCliente = Cliente_Paquete.IdCliente
-INNER JOIN Cliente_Sucursal ON Cliente.IdCliente = Cliente_Sucursal.IdCliente
-WHERE Cliente_Sucursal.IdSucursal = 1
+INSERT INTO couriertecSanJoseDB.dbo.Cliente_Paquete_SanJose
+SELECT Cliente_Paquete.IdCliente, Cliente_Paquete.IdPaquete
+FROM [RANDYMARTZ8AEA].[couriertecDB].[dbo].[Cliente_Paquete]
+INNER JOIN [RANDYMARTZ8AEA].[couriertecDB].[dbo].[Cliente] ON Cliente.IdCliente = Cliente_Paquete.IdCliente
+INNER JOIN [RANDYMARTZ8AEA].[couriertecDB].[dbo].[Cliente_Sucursal] ON Cliente.IdCliente = Cliente_Sucursal.IdCliente
+WHERE Cliente_Sucursal.IdSucursal = 1;
+
+
+-- Llenando tabla de los Clientes de SanJose --
+INSERT INTO couriertecSanJoseDB.dbo.Cliente_SanJose
+SELECT TT1.*, TT2.* FROM
+(SELECT Cliente.IdCliente, Cedula, Nombre,
+Apellido,  Telefono, Tipo, FechaNacimiento
+FROM [RANDYMARTZ8AEA].[couriertecDB].[dbo].[Cliente]
+INNER JOIN [RANDYMARTZ8AEA].[couriertecDB].[dbo].[Cliente_Sucursal] ON Cliente.IdCliente = Cliente_Sucursal.IdCliente
+WHERE Cliente_Sucursal.IdSucursal = 1) AS [TT1],
+
+(SELECT Provincia.Nombre AS 'Provincia'
+FROM [RANDYMARTZ8AEA].[couriertecDB].[dbo].[Provincia]
+INNER Join [RANDYMARTZ8AEA].[couriertecDB].[dbo].[Cliente] on Cliente.IdProvincia = Provincia.IdProvincia
+INNER JOIN [RANDYMARTZ8AEA].[couriertecDB].[dbo].[Cliente_Sucursal] ON Cliente.IdCliente = Cliente_Sucursal.IdCliente
+WHERE Cliente_Sucursal.IdSucursal = 1) AS [TT2];
+GO
