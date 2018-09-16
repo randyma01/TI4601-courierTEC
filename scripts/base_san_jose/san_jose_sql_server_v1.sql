@@ -87,8 +87,8 @@ GO
 CREATE TABLE Cliente_Paquete_SanJose(
 	IdCliente INT NOT NULL,
 	IdPaquete INT NOT NULL,
-	FOREIGN KEY (IdCliente) REFERENCES Cliente(IdCliente),
-	FOREIGN KEY (IdPaquete) REFERENCES Paquete(IdPaquete)
+	FOREIGN KEY (IdCliente) REFERENCES Cliente_SanJose(IdCliente),
+	FOREIGN KEY (IdPaquete) REFERENCES Paquete_SanJose(IdPaquete)
 );
 GO
 
