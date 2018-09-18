@@ -47,7 +47,6 @@ CREATE TABLE Cliente_SanJose(
 	Telefono VARCHAR(11) NOT NULL,
 	Tipo VARCHAR(11) NOT NULL,
 	FechaNacimiento DATE NOT NULL,
-	Provincia VARCHAR (12) NOT NULL,
 );
 GO
 
@@ -133,16 +132,29 @@ WHERE Cliente_Sucursal.IdSucursal = 1;
 
 -- Llenando tabla de los Clientes de SanJose --
 INSERT INTO couriertecSanJoseDB.dbo.Cliente_SanJose
-SELECT TT1.*, TT2.* FROM
-(SELECT Cliente.IdCliente, Cedula, Nombre,
+SELECT Cliente.IdCliente, Cedula, Nombre,
 Apellido,  Telefono, Tipo, FechaNacimiento
 FROM [RANDYMARTZ8AEA].[couriertecDB].[dbo].[Cliente]
 INNER JOIN [RANDYMARTZ8AEA].[couriertecDB].[dbo].[Cliente_Sucursal] ON Cliente.IdCliente = Cliente_Sucursal.IdCliente
-WHERE Cliente_Sucursal.IdSucursal = 1) AS [TT1],
+WHERE Cliente_Sucursal.IdSucursal = 1;
 
-(SELECT Provincia.Nombre AS 'Provincia'
-FROM [RANDYMARTZ8AEA].[couriertecDB].[dbo].[Provincia]
-INNER Join [RANDYMARTZ8AEA].[couriertecDB].[dbo].[Cliente] on Cliente.IdProvincia = Provincia.IdProvincia
+/*
+SELECT DISTINCT TT1.*, TT2.Provincia FROM
+(
+SELECT Cliente.IdCliente, Cedula, Nombre,
+Apellido,  Telefono, Tipo, FechaNacimiento
+FROM [RANDYMARTZ8AEA].[couriertecDB].[dbo].[Cliente]
 INNER JOIN [RANDYMARTZ8AEA].[couriertecDB].[dbo].[Cliente_Sucursal] ON Cliente.IdCliente = Cliente_Sucursal.IdCliente
-WHERE Cliente_Sucursal.IdSucursal = 1) AS [TT2];
+WHERE Cliente_Sucursal.IdSucursal = 2
+) AS [TT1],
+
+(
+SELECT Provincia.Nombre AS 'Provincia'
+FROM [RANDYMARTZ8AEA].[couriertecDB].[dbo].[Provincia]
+INNER JOIN [RANDYMARTZ8AEA].[couriertecDB].[dbo].[Cliente] ON Cliente.IdProvincia = Provincia.IdProvincia
+INNER JOIN [RANDYMARTZ8AEA].[couriertecDB].[dbo].[Cliente_Sucursal] ON Cliente.IdCliente = Cliente_Sucursal.IdCliente
+WHERE Cliente_Sucursal.IdSucursal = 2
+) AS [TT2]
+ORDER BY Provincia;
 GO
+*/
