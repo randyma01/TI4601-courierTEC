@@ -1,42 +1,112 @@
+/*
+Proyecto I: courierTEC (SQL Server 2017)
 
---Consultas SJO y Cartago 
+Bases de Datos Avanzados, Área Acádemica de Administración de Tecnología de Información
 
---Cantidad de dinero recaudado (se asume que se recauda cuando el paquete es retirado) en la sucursal.
+Semestre II, 2018
 
-  SELECT sum(Monto) 
-  FROM Paquete
-  WHERE EstadoPaquete = 'retirado' ; - # Por sucursal
+Miembros:
+	Karla Araya Corrales
+	Maria Paula Ramírez Ortiz
+	Hazel Arias Abarca
+	Randy Martínez Sandí
 
---Cantidad de paquetes según cliente para un rango de fechas específico. El sistema debe
---presentar un listado de los clientes y los paquetes registrados durante esas fechas inclusive.
--- # RECIBE dos FECHAS
-SELECT count(Paquete.IdPaquete) as Cantidad, Clientes.Nombre 
-FROM Cliente_Paquete 
-JOIN Paquete on Paquete.IdPaquete = Cliente_Paquete.IdPaquete 
-JOIN Clientes on Clientes.IdCliente = Cliente_Paquete.IdCliente 
-WHERE EstadoPaquete = 'retirado' 
-and FechaIngreso  >= '2011-04-12' AND FechaIngreso <= '2011-05-25'  group by Cliente_Paquete.IdCliente, Clientes.Nombre ;
-  --USAR FORMATO ANHO-MES-DIA
+Nota:
+	Este es el script para las consultas de la base central, las consultas están
+  como 'stored procedures'.
+
+*/
+
+---------------------------------------------------
+--------------Uso de la base de datos--------------
+---------------------------------------------------
+
+USE courierTEC
+GO
+
+---------------------------------------------------
+---------------------Consultas---------------------
+----------------(Stored Procedures)----------------
+---------------------------------------------------
+
+-- =============================================
+-- Autores:	Todos los miembros.
+-- Fecha creación: --
+-- Descripción: Monto total de paquetes retirados.
+-- =============================================
+CREATE PROCEDURE sp_MontoPaquetesRetirados
+AS
+BEGIN
+  SELECT sum(Monto) FROM PaqueteWHERE EstadoPaquete = 'retirado';
+GO
+END
 
 
--- Mostar los montos promedios de los paquetes para el periodo indicado.
--- # RECIBE DOS FECHAS
-SELECT avg(Monto) as PromedioMontoTotal FROM  Cliente_Paquete
-JOIN Paquete on Paquete.IdPaquete = Cliente_Paquete.IdPaquete 
-JOIN Clientes on Clientes.IdCliente = Cliente_Paquete.IdCliente 
-WHERE EstadoPaquete = 'retirado' 
-and FechaIngreso  >= '2011-04-12' AND FechaIngreso <= '2011-05-25' ; 
-  
+-- =============================================
+-- Autores:	Todos los miembros.
+-- Fecha creación: --
+-- Descripción: Cantidad de paquetes según cliente
+-- para un rango de fechas específico. El sistema debe
+-- presentar un listado de los clientes y los paquetes
+-- registrados durante esas fechas inclusive. Recibe
+-- dos fechas. Usuar formato: Anho-Mes-Dia
+-- =============================================
+CREATE PROCEDURE sp_CantidadPaquetes(
+	@fechaInicial VARCHAR(12),
+	@fechaFinal VARCHAR(12),
+)
+AS
+BEGIN
+  SELECT count(Paquete.IdPaquete) AS Cantidad, Cliente.Nombre
+  FROM Cliente_Paquete
+  JOIN Paquete ON Paquete.IdPaquete = Cliente_Paquete.IdPaquete
+  JOIN Cliente ON Cliente.IdCliente = Cliente_Paquete.IdCliente
+  WHERE EstadoPaquete = 'retirado'
+  AND FechaIngreso  >= @fechaInicial AND FechaIngreso <= @fechaFinal
+  GROUP BY Cliente_Paquete.IdCliente, Cliente.Nombre;
+END
+GO
+
+
+-- =============================================
+-- Autores:	Todos los miembros.
+-- Fecha creación: --
+-- Descripción: Mostar los montos promedios de
+-- los paquetes para el periodo indicado.
+-- =============================================
+
+CREATE Procedure sp_MontosPromedios
+@fechaInicial VARCHAR(12),
+@fechaFinal VARCHAR(12),
+)
+AS
+BEGIN
+  SELECT avg(Monto) AS PromedioMontoTotal FROM  Cliente_Paquete
+  JOIN Paquete ON Paquete.IdPaquete = Cliente_Paquete.IdPaquete
+  JOIN Cliente ON Cliente.IdCliente = Cliente_Paquete.IdCliente
+  WHERE EstadoPaquete = 'retirado'
+  AND FechaIngreso  >= @fechaInicial AND FechaIngreso <= @fechaFinal ;
+END
+GO
+
+
+
+----+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+----+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+----+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+----+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
 --Monto promedio pagado por paquete por cliente para un periodo de fechas específico. El
 --sistema debe mostrar un listado de los clientes.
 
 -- # RECIBE DOS FECHAS
-SELECT avg(Monto) as PromedioMontoTotal,Clientes.Nombre 
+SELECT avg(Monto) as PromedioMontoTotal,Cliente.Nombre
 FROM  Cliente_Paquete
-JOIN Paquete on Paquete.IdPaquete = Cliente_Paquete.IdPaquete 
-JOIN Clientes on Clientes.IdCliente = Cliente_Paquete.IdCliente 
-WHERE EstadoPaquete = 'retirado' 
-and FechaIngreso  >= '2011-04-12' AND FechaIngreso <= '2011-05-25'  group by Cliente_Paquete.IdCliente, Clientes.Nombre ;
+JOIN Paquete on Paquete.IdPaquete = Cliente_Paquete.IdPaquete
+JOIN Cliente on Cliente.IdCliente = Cliente_Paquete.IdCliente
+WHERE EstadoPaquete = 'retirado'
+and FechaIngreso  >= '2011-04-12' AND FechaIngreso <= '2011-05-25'  group by Cliente_Paquete.IdCliente, Cliente.Nombre ;
 
 --Monto de paquete para un tipo de paquete específico para un mes en particular. El sistema
 --debe permitir ESCOGER TIPO Y MES, presentando luego el monto de paquete
@@ -52,19 +122,19 @@ and FechaIngreso  >= '2011-04-12' AND FechaIngreso <= '2011-05-25'
 
 --Monto recaudado por sucursal para un periodo específico.
 -- # RECIBE FECHA
-SELECT sum(Monto) FROM Paquete WHERE EstadoPaquete = 'retirado' 
-and FechaIngreso  >= '2011-04-12' AND FechaIngreso <= '2011-05-25' ; 
+SELECT sum(Monto) FROM Paquete WHERE EstadoPaquete = 'retirado'
+and FechaIngreso  >= '2011-04-12' AND FechaIngreso <= '2011-05-25' ;
 --Monto recaudado por sucursal y por tipo de paquete para un periodo específico.
 -- # RECIBE FECHA
-  SELECT sum(Monto) FROM Paquete  WHERE EstadoPaquete = 'retirado' 
+  SELECT sum(Monto) FROM Paquete  WHERE EstadoPaquete = 'retirado'
 and FechaIngreso  >= '2011-04-12' AND FechaIngreso <= '2011-05-25' GROUP BY Tipo ;
 --Listado de los tres mejores clientes (los que tenga un monto mayor en el total de paquetes
 --que hayan traído) en un periodo específico.
 
 -- # RECIBE FECHA
 SELECT Top 3 Paquete.monto, Cliente_Paquete.IdCliente, Cliente_Paquete.IdPaquete  FROM  Cliente_Paquete
-JOIN Paquete on Paquete.IdPaquete = Cliente_Paquete.IdPaquete 
-JOIN Clientes on Clientes.IdCliente = Cliente_Paquete.IdCliente 
+JOIN Paquete on Paquete.IdPaquete = Cliente_Paquete.IdPaquete
+JOIN Clientes on Clientes.IdCliente = Cliente_Paquete.IdCliente
 WHERE EstadoPaquete = 'retirado' and FechaIngreso  >= '2011-04-12' AND FechaIngreso <= '2011-05-25'
 GROUP BY Paquete.monto, Cliente_Paquete.IdCliente, Cliente_Paquete.IdPaquete
 Having Paquete.monto >  avg(Paquete.monto) ;
