@@ -21,7 +21,7 @@ Nota:
 --------------Uso de la base de datos--------------
 ---------------------------------------------------
 
-USE courierTEC
+USE courierTEC;
 GO
 
 ---------------------------------------------------
@@ -32,7 +32,8 @@ GO
 -- Monto total de paquetes retirados.
 -- =============================================
 
-SELECT SUM(Monto) FROM PaqueteWHERE EstadoPaquete = 'retirado';
+SELECT SUM(Monto) FROM Paquete
+WHERE EstadoPaquete = 'retirado';
 
 -- =============================================
 -- Cantidad de paquetes según cliente
@@ -42,13 +43,13 @@ SELECT SUM(Monto) FROM PaqueteWHERE EstadoPaquete = 'retirado';
 -- RECIBE DOS FECHAS (Anho-Mes-Dia)
 -- =============================================
 
-SELECT COUNT(Paquete.IdPaquete) AS Cantidad, Clientes.Nombre
+SELECT COUNT(Paquete.IdPaquete) AS Cantidad, Cliente.Nombre
 FROM Cliente_Paquete
 JOIN Paquete ON Paquete.IdPaquete = Cliente_Paquete.IdPaquete
-JOIN Clientes ON Clientes.IdCliente = Cliente_Paquete.IdCliente
+JOIN Cliente ON Cliente.IdCliente = Cliente_Paquete.IdCliente
 WHERE EstadoPaquete = 'retirado'
 AND FechaIngreso  >= '2011-04-12' AND FechaIngreso <= '2011-05-25'
-GROUP BY Cliente_Paquete.IdCliente, Clientes.Nombre ;
+GROUP BY Cliente_Paquete.IdCliente, Cliente.Nombre ;
 
 
 -- =============================================
@@ -57,7 +58,8 @@ GROUP BY Cliente_Paquete.IdCliente, Clientes.Nombre ;
 -- RECIBE DOS FECHAS
 -- =============================================
 
-SELECT AVG(Monto) AS PromedioMontoTotal FROM  Cliente_Paquete
+SELECT AVG(Monto) AS PromedioMontoTotal
+FROM  Cliente_Paquete
 JOIN Paquete ON Paquete.IdPaquete = Cliente_Paquete.IdPaquete
 JOIN Cliente ON Cliente.IdCliente = Cliente_Paquete.IdCliente
 WHERE EstadoPaquete = 'retirado'
@@ -113,7 +115,7 @@ AND FechaIngreso  >= '2011-04-12' AND FechaIngreso <= '2011-05-25' ;
 -- RECIBE FECHA
 -- =============================================
 
-SELECT SUM(Monto)
+SELECT SUM(Monto)s
 FROM Paquete
 WHERE EstadoPaquete = 'retirado'
 AND FechaIngreso  >= '2011-04-12' AND FechaIngreso <= '2011-05-25'
@@ -130,7 +132,7 @@ GROUP BY Tipo;
 SELECT TOP 3 Paquete.monto, Cliente_Paquete.IdCliente, Cliente_Paquete.IdPaquete
 FROM  Cliente_Paquete
 JOIN Paquete ON Paquete.IdPaquete = Cliente_Paquete.IdPaquete
-JOIN Clientes ON Clientes.IdCliente = Cliente_Paquete.IdCliente
+JOIN Cliente ON Cliente.IdCliente = Cliente_Paquete.IdCliente
 WHERE EstadoPaquete = 'retirado'
 AND FechaIngreso  >= '2011-04-12' AND FechaIngreso <= '2011-05-25'
 GROUP BY Paquete.monto, Cliente_Paquete.IdCliente, Cliente_Paquete.IdPaquete
