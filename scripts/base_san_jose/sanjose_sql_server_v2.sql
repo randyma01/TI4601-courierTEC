@@ -137,24 +137,3 @@ Apellido,  Telefono, Tipo, FechaNacimiento
 FROM [RANDYMARTZ8AEA].[couriertecDB].[dbo].[Cliente]
 INNER JOIN [RANDYMARTZ8AEA].[couriertecDB].[dbo].[Cliente_Sucursal] ON Cliente.IdCliente = Cliente_Sucursal.IdCliente
 WHERE Cliente_Sucursal.IdSucursal = 1;
-
-/*
-SELECT DISTINCT TT1.*, TT2.Provincia FROM
-(
-SELECT Cliente.IdCliente, Cedula, Nombre,
-Apellido,  Telefono, Tipo, FechaNacimiento
-FROM [RANDYMARTZ8AEA].[couriertecDB].[dbo].[Cliente]
-INNER JOIN [RANDYMARTZ8AEA].[couriertecDB].[dbo].[Cliente_Sucursal] ON Cliente.IdCliente = Cliente_Sucursal.IdCliente
-WHERE Cliente_Sucursal.IdSucursal = 2
-) AS [TT1],
-
-(
-SELECT Provincia.Nombre AS 'Provincia'
-FROM [RANDYMARTZ8AEA].[couriertecDB].[dbo].[Provincia]
-INNER JOIN [RANDYMARTZ8AEA].[couriertecDB].[dbo].[Cliente] ON Cliente.IdProvincia = Provincia.IdProvincia
-INNER JOIN [RANDYMARTZ8AEA].[couriertecDB].[dbo].[Cliente_Sucursal] ON Cliente.IdCliente = Cliente_Sucursal.IdCliente
-WHERE Cliente_Sucursal.IdSucursal = 2
-) AS [TT2]
-ORDER BY Provincia;
-GO
-*/
