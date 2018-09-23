@@ -13,7 +13,8 @@ Miembros:
 
 Índice:
 	1- Creación de las tablas.
-	2- Llenado de Datos.
+	2- Llenado de datos.
+	3 - Triggers para los nodos.
 */
 
 --------------------------------------------------------
@@ -187,3 +188,47 @@ GO
 INSERT INTO Paquete_Sucursal (IdPaquete, IdSucursal) VALUES
 (1,1), (2,1), (3,2), (4,2);
 GO
+
+--------------------------------------------------------
+--------------trigger para el auto llenado--------------
+--------------------------------------------------------
+
+/*
+CREATE TRIGGER nuevoPaqueteCartago
+ON [couriertecDB].[dbo].[Paquete]
+AFTER UPDATE, INSERT
+AS
+BEGIN
+	PRINT 'Insertando paquete nuevo a Cartago.'
+
+	INSERT INTO couriertecCartagoDB.dbo.Paquete_Cartago
+	SELECT TOP 1 Paquete.IdPaquete, FechaIngreso, Tipo, Descripcion, Peso, Precio, Monto, EstadoPaquete
+	FROM [couriertecDB].[dbo].[Paquete]
+	INNER JOIN Paquete_Sucursal ON Paquete.IdPaquete = Paquete_Sucursal.IdPaquete
+	WHERE [Paquete_Sucursal].IdSucursal= 2
+	ORDER BY [couriertecDB].[dbo].[Paquete].[IdPaquete] DESC;
+	PRINT 'Paquete insertado en el nodo Cartago.'
+
+END
+GO
+*/
+
+/*
+CREATE TRIGGER nuevoPaqueteSanJose
+ON [couriertecDB].[dbo].[Paquete]
+AFTER UPDATE, INSERT
+AS
+BEGIN
+	PRINT 'Insertando paquete nuevo a San Jose.'
+
+	INSERT INTO couriertecSanJoseDB.dbo.Paquete_SanJose
+	SELECT TOP 1 Paquete.IdPaquete,FechaIngreso, Tipo, DESCRIPCION, Peso, Precio, Monto, EstadoPaquete
+	FROM [couriertecDB].[dbo].[Paquete]
+	INNER JOIN Paquete_Sucursal ON Paquete.IdPaquete = Paquete_Sucursal.IdPaquete
+	WHERE [Paquete_Sucursal].IdSucursal= 1
+	ORDER BY [couriertecDB].[dbo].[Paquete].[IdPaquete] DESC;
+	PRINT 'Paquete insertado en el nodo San Jose.'
+
+END
+GO
+*/
