@@ -103,27 +103,20 @@ GO
 -- Tabla de los Cliente por Sucursal --
 CREATE TABLE Cliente_Sucursal(
 	IdCliente INT NOT NULL,
-	IdSucursal INT NOT NULL,
-	FOREIGN KEY (IdCliente) REFERENCES Cliente(IdCliente),
-	FOREIGN KEY (IdSucursal) REFERENCES Sucursal(IdSucursal)
+	IdSucursal INT NOT NULL
 );
 GO
 
 -- Tabla de los Clientes por Paquete --
 CREATE TABLE Cliente_Paquete(
 	IdCliente INT NOT NULL,
-	IdPaquete INT NOT NULL,
-	FOREIGN KEY (IdCliente) REFERENCES Cliente(IdCliente),
-	FOREIGN KEY (IdPaquete) REFERENCES Paquete(IdPaquete)
-);
+	IdPaquete INT NOT NULL
 GO
 
 -- Tabla de los Paquetes por Sucursal --
 CREATE TABLE Paquete_Sucursal(
 	IdSucursal INT NOT NULL,
-	IdPaquete INT NOT NULL,
-	FOREIGN KEY (IdPaquete) REFERENCES Paquete(IdPaquete),
-	FOREIGN KEY (IdSucursal) REFERENCES Sucursal(IdSucursal)
+	IdPaquete INT NOT NULL
 );
 GO
 

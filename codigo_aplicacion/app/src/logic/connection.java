@@ -42,12 +42,15 @@ public class connection {
         return connectionCT ;     
     }
     public Connection Cnn(String Database){
-        String Server = "localhost";
+        String Server = "RANDYMARTZ8AEA";
         //String Database = "couriertecDB";
-        String url = "jdbc:sqlserver://"+Server+":1433"
-                + ";database="+Database+";user=sa;password=qwerty;SSL:false"
+        String url = "jdbc:sqlserver//RANDYMARTZ8AEA\\1433"
+                + ";database=couriertecDB;user=randyma;password=Alex2004;SSL:false"
                 + "encrypt=true;trustServerCertificate=false;loginTimeout=30;";
-        url = String.format(url);
+        url = String.format(url); 
+        
+        
+         //String url = "jdbc:sqlserver://RANDYMARTZ8AEA\\SQLFULL:1433;databaseName=_ELTRUN;";
        // System.out.println(url);
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");

@@ -40,7 +40,7 @@ GO
 
 -- Tabla de los CLientes de Cartago --
 CREATE TABLE Cliente_Cartago(
-	IdCliente INT NOT NULL PRIMARY KEY,
+	IdCliente INT NOT NULL,
 	Cedula INT NOT NULL,
 	Nombre VARCHAR(15) NOT NULL,
 	Apellido VARCHAR(15) NOT NULL,
@@ -52,7 +52,7 @@ GO
 
 -- Tabla de la Sucursal de Cartago --
 CREATE TABLE Sucursal_Cartago(
-	IdSucursal INT NOT NULL PRIMARY KEY,
+	IdSucursal INT NOT NULL,
 	Nombre VARCHAR(30) NOT NULL,
 	Telefono VARCHAR(11) NOT NULL,
 	Correo VARCHAR(25) NOT NULL,
@@ -62,7 +62,7 @@ GO
 
 -- Tabla de los Empleados --
 CREATE TABLE Empleado_Cartago(
-	IdEmpleado INT NOT NULL PRIMARY KEY,
+	IdEmpleado INT NOT NULL,
 	Nombre VARCHAR(15) NOT NULL,
 	Apellido VARCHAR(15) NOT NULL,
 	Cedula INT NOT NULL,
@@ -71,7 +71,7 @@ GO
 
 -- Tabla de los Paquetes --
 CREATE TABLE Paquete_Cartago(
-	IdPaquete INT NOT NULL  PRIMARY KEY,
+	IdPaquete INT NOT NULL,
 	FechaIngreso DATE NOT NULL,
 	Tipo VARCHAR(30) NOT NULL, 				--(ropa, juegetes, herramientas, etc).
 	Descripcion VARCHAR(1000) NOT NULL,

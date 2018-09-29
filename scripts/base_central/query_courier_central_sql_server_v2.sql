@@ -49,7 +49,7 @@ JOIN Paquete ON Paquete.IdPaquete = Cliente_Paquete.IdPaquete
 JOIN Cliente ON Cliente.IdCliente = Cliente_Paquete.IdCliente
 WHERE EstadoPaquete = 'retirado'
 AND FechaIngreso  >= '2011-04-12' AND FechaIngreso <= '2011-05-25'
-GROUP BY Cliente_Paquete.IdCliente, Cliente.Nombre ;
+GROUP BY Cliente_Paquete.IdCliente, Cliente.Nombre;
 
 
 -- =============================================
