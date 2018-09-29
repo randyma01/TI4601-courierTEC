@@ -111,6 +111,7 @@ GO
 CREATE TABLE Cliente_Paquete(
 	IdCliente INT NOT NULL,
 	IdPaquete INT NOT NULL
+);
 GO
 
 -- Tabla de los Paquetes por Sucursal --
