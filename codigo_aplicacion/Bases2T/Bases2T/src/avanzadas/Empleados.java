@@ -36,17 +36,19 @@ public class Empleados extends javax.swing.JFrame {
         e_monto = new javax.swing.JTextField();
         e_registrar = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
-        e_sucursal = new javax.swing.JSpinner();
         jLabel13 = new javax.swing.JLabel();
         e_id = new javax.swing.JSpinner();
         TipoPaquete1 = new javax.swing.JComboBox<>();
         CategoriaPaquete1 = new javax.swing.JComboBox<>();
+        SucursalCB = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         e_identificador = new javax.swing.JTextField();
         e_salida = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
+        SucursalS = new javax.swing.JComboBox<>();
+        jLabel15 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -89,14 +91,21 @@ public class Empleados extends javax.swing.JFrame {
 
         jLabel13.setText("Id");
 
-        TipoPaquete1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Electronicos", "ropa", "juguetes", "hogar", "comida", "quimicos", "herramientas" }));
+        TipoPaquete1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Electronico", "ropa", "juguetes", "hogar", "comida", "quimicos", "herramientas" }));
+        TipoPaquete1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TipoPaquete1ActionPerformed(evt);
+            }
+        });
 
-        CategoriaPaquete1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sucursal", "Camino" }));
+        CategoriaPaquete1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sucursal", "Camino", "Retirado" }));
         CategoriaPaquete1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CategoriaPaquete1ActionPerformed(evt);
             }
         });
+
+        SucursalCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Heredia", "Cartago", "San Jose" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -125,25 +134,23 @@ public class Empleados extends javax.swing.JFrame {
                                 .addComponent(jLabel5)
                                 .addGap(18, 18, 18)
                                 .addComponent(CategoriaPaquete1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(TipoPaquete1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel12)
-                                .addGap(80, 80, 80)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(SucursalCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(52, 52, 52)
                                 .addComponent(jLabel13)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
-                                .addComponent(e_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(66, 66, 66)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(e_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(e_sucursal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(e_peso, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(e_peso, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -193,9 +200,9 @@ public class Empleados extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(e_sucursal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13)
-                    .addComponent(e_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(e_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SucursalCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(e_registrar)
                 .addGap(102, 102, 102))
@@ -219,6 +226,10 @@ public class Empleados extends javax.swing.JFrame {
 
         jLabel14.setText("El estado del paquete será cambiado a retirado.");
 
+        SucursalS.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Heredia", "Cartago", "San Jose" }));
+
+        jLabel15.setText("Sucursal");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -226,13 +237,20 @@ public class Empleados extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel14))
+                        .addContainerGap(232, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(e_identificador, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel14))
-                .addContainerGap(148, Short.MAX_VALUE))
+                        .addComponent(e_identificador, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(SucursalS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23))))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(e_salida)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -245,7 +263,9 @@ public class Empleados extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(e_identificador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(e_identificador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SucursalS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel14)
                 .addGap(18, 18, 18)
@@ -276,23 +296,27 @@ public class Empleados extends javax.swing.JFrame {
         String precio = e_valor.getText();
         String peso = e_peso.getText();
         String descripcion = e_descripcion.getText();
-        String database = "couriertecDB";
-        int sucursal = (Integer) e_sucursal.getValue();
+        String database = "";
+        String sucursal = SucursalCB.getSelectedItem().toString();
         String cedula = e_cedula.getText();
         String categoria = CategoriaPaquete1.getSelectedItem().toString();
         String tipo = TipoPaquete1.getSelectedItem().toString();
+        String idSucursal = "";
         int id = (Integer) e_id.getValue();
-        if (id == 1){
-            //database = ;
+        if (sucursal == "Heredia"){
+            database = "couriertecDB";
+            idSucursal = "3";
         }
-        else if (id ==2 ){
-            
+        else if (sucursal == "San Jose" ){
+            database = "couriertecSanJoseDB";
+            idSucursal = "1";
         }
-        else if (id == 3 ){
-            
+        else if (sucursal == "Cartago" ){
+            database = "couriertecCartagoDB";
+            idSucursal = "2";
         }
         else{
-            
+            System.out.println("No entro al combobox de sucursal");
         }
         
         String QueryPaquete = "insert into Paquete values("
@@ -301,10 +325,10 @@ public class Empleados extends javax.swing.JFrame {
          categoria+ "')";
         
         String QueryPaqueteSucursal = "insert into Paquete_Sucursal "
-                + "values ("+sucursal +","+ id
-                + ")";
+                + "values ("+idSucursal+")";
+        
         String QueryClientePaquete = "insert into Cliente_Paquete "
-                + "values ("+cedula+","+id +")";
+                + "values ("+cedula+")";
         cnnDB.sendQuery(QueryPaquete,database,0);
         System.out.println(QueryPaquete);
         cnnDB.sendQuery(QueryPaqueteSucursal,database,0);
@@ -326,8 +350,30 @@ public class Empleados extends javax.swing.JFrame {
         // TODO add your handling code here:
         String id = e_identificador.getText();
         String query = "UPDATE Paquete SET EstadoPaquete = 'Retirado' WHERE IdPaquete = " + id;
-        cnnDB.sendQuery(query,"couriertecDB",0);
+        String database = "";
+        String sucursal = SucursalS.getSelectedItem().toString();
+        String idSucursal = "";
+        if (sucursal == "Heredia"){
+            database = "couriertecDB";
+            idSucursal = "3";
+        }
+        else if (sucursal == "San Jose" ){
+            database = "couriertecSanJoseDB";
+            idSucursal = "1";
+        }
+        else if (sucursal == "Cartago" ){
+            database = "couriertecCartagoDB";
+            idSucursal = "2";
+        }
+        else{
+            System.out.println("No entro al combobox de sucursal");
+        }
+        cnnDB.sendQuery(query,database,0);
     }//GEN-LAST:event_e_salidaActionPerformed
+
+    private void TipoPaquete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TipoPaquete1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TipoPaquete1ActionPerformed
     
     /**
      * @param args the command line arguments
@@ -367,6 +413,8 @@ public class Empleados extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> CategoriaPaquete1;
+    private javax.swing.JComboBox<String> SucursalCB;
+    private javax.swing.JComboBox<String> SucursalS;
     private javax.swing.JComboBox<String> TipoPaquete1;
     private javax.swing.JTextField e_cedula;
     private javax.swing.JTextArea e_descripcion;
@@ -377,7 +425,6 @@ public class Empleados extends javax.swing.JFrame {
     private javax.swing.JTextField e_peso;
     private javax.swing.JButton e_registrar;
     private javax.swing.JButton e_salida;
-    private javax.swing.JSpinner e_sucursal;
     private javax.swing.JTextField e_valor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -385,6 +432,7 @@ public class Empleados extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

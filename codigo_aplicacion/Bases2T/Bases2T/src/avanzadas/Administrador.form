@@ -23,7 +23,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jTabbedPane1" alignment="0" pref="460" max="32767" attributes="0"/>
+          <Component id="jTabbedPane1" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -393,14 +393,14 @@
                                       </Group>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="TipoPaqueteSJ1" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="FechaFinalSJ1" max="32767" attributes="0"/>
-                                          <Component id="FechaInicioSJ2" max="32767" attributes="0"/>
+                                          <Component id="TipoPaqueteC" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="FechaFinalC" max="32767" attributes="0"/>
+                                          <Component id="FechaInicioC" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="QuerySJ1" min="-2" pref="179" max="-2" attributes="0"/>
+                              <Component id="QueryC" min="-2" pref="179" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="jScrollPane2" min="-2" pref="212" max="-2" attributes="0"/>
@@ -422,12 +422,12 @@
                           <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="FechaInicioSJ2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="QuerySJ1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="FechaInicioC" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="QueryC" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="FechaFinalSJ1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="FechaFinalC" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -437,7 +437,7 @@
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="TipoPaqueteSJ1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="TipoPaqueteC" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jScrollPane2" min="-2" pref="167" max="-2" attributes="0"/>
@@ -450,7 +450,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JComboBox" name="QuerySJ1">
+            <Component class="javax.swing.JComboBox" name="QueryC">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="5">
@@ -481,23 +481,23 @@
                 <Property name="text" type="java.lang.String" value="Fecha Inicio:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="FechaInicioSJ2">
+            <Component class="javax.swing.JTextField" name="FechaInicioC">
               <Properties>
                 <Property name="text" type="java.lang.String" value="YYYY/MM/DD"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="FechaFinalSJ1">
+            <Component class="javax.swing.JTextField" name="FechaFinalC">
               <Properties>
                 <Property name="text" type="java.lang.String" value="YYYY/MM/DD"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="TipoPaqueteSJ1">
+            <Component class="javax.swing.JComboBox" name="TipoPaqueteC">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="7">
-                    <StringItem index="0" value="Electronicos"/>
+                    <StringItem index="0" value="Electronico"/>
                     <StringItem index="1" value="ropa"/>
-                    <StringItem index="2" value="juguetes"/>
+                    <StringItem index="2" value="juguete"/>
                     <StringItem index="3" value="hogar"/>
                     <StringItem index="4" value="comida"/>
                     <StringItem index="5" value="quimicos"/>
@@ -505,6 +505,9 @@
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TipoPaqueteCActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
@@ -521,7 +524,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTextArea" name="QueryAreaSJ1">
+                <Component class="javax.swing.JTextArea" name="QueryAreaC">
                   <Properties>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="rows" type="int" value="5"/>

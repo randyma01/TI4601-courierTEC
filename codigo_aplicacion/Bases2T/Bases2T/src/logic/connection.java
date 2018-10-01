@@ -42,15 +42,12 @@ public class connection {
         return connectionCT ;     
     }
     public Connection Cnn(String Database){
-        String Server = "RANDYMARTZ8AEA";
+        String Server = "localhost";
         //String Database = "couriertecDB";
-        String url = "jdbc:sqlserver//RANDYMARTZ8AEA\\1433"
-                + ";database=couriertecDB;user=randyma;password=Alex2004;SSL:false"
+        String url = "jdbc:sqlserver://"+Server+":1433"
+                + ";database="+Database+";user=feo;password=feo123;SSL:false"
                 + "encrypt=true;trustServerCertificate=false;loginTimeout=30;";
-        url = String.format(url); 
-        
-        
-         //String url = "jdbc:sqlserver://RANDYMARTZ8AEA\\SQLFULL:1433;databaseName=_ELTRUN;";
+        url = String.format(url);
        // System.out.println(url);
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -96,13 +93,14 @@ public class connection {
         }
         return result;
     }
-    public  void verPaquetes(JTable tab, String query){
+    public  void verPaquetes(JTable tab, String query,String database){
         //DefaultTableModel tabla = new DefaultTableModel();
         //tab.setModel(tabla);
         try{
             DefaultTableModel tablam = new DefaultTableModel();
             System.out.println(query);
-            Connection  cnn = Cnn("couriertecDB");  
+            clearTable(tablam);
+            Connection  cnn = Cnn(database);  
             Statement statement = cnn.createStatement(); 
             ResultSet rs = statement.executeQuery(query);
             tablam.addColumn("ID Paquete");
@@ -120,10 +118,17 @@ public class connection {
         }
         tab.setModel(tablam);
         }
-                catch (Exception e){
+         catch (Exception e){
             System.out.println(e);
         }
             
+    }
+    
+    public void clearTable(DefaultTableModel tab){
+        for (int i = tab.getRowCount()-1 ; i >=0; i--){
+            tab.removeRow(i);
+        }
+        
     }
     
     public Boolean logIn(String User,String ID){

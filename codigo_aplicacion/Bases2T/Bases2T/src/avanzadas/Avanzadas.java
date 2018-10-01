@@ -4,7 +4,8 @@ public class Avanzadas {
 
     public static void main(String[] args) {
         System.out.println("qwertyuio");
-        new connection().Cnn("couriertecDB"); 
+        //new connection().getCnn("sa","qwerty","couriertecDB"); 
+        new Login().setVisible(true);
     }
     
 }

@@ -41,16 +41,16 @@ public class Administrador extends javax.swing.JFrame {
         TipoPaqueteSJ = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        QuerySJ1 = new javax.swing.JComboBox<>();
+        QueryC = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        FechaInicioSJ2 = new javax.swing.JTextField();
-        FechaFinalSJ1 = new javax.swing.JTextField();
-        TipoPaqueteSJ1 = new javax.swing.JComboBox<>();
+        FechaInicioC = new javax.swing.JTextField();
+        FechaFinalC = new javax.swing.JTextField();
+        TipoPaqueteC = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        QueryAreaSJ1 = new javax.swing.JTextArea();
+        QueryAreaC = new javax.swing.JTextArea();
         H1_Consultar2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -221,7 +221,7 @@ public class Administrador extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 255));
 
-        QuerySJ1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cantidad de dinero recaudado ", "Cantidad de paquetes", "Montos promedios de los paquetes", "Monto promedio pagado por paquete por cliente", "Monto de paquete para un tipo de paquete" }));
+        QueryC.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cantidad de dinero recaudado ", "Cantidad de paquetes", "Montos promedios de los paquetes", "Monto promedio pagado por paquete por cliente", "Monto de paquete para un tipo de paquete" }));
 
         jLabel5.setText("Consultas para la Sede de Cartago");
 
@@ -229,17 +229,22 @@ public class Administrador extends javax.swing.JFrame {
 
         jLabel7.setText("Fecha Inicio:");
 
-        FechaInicioSJ2.setText("YYYY/MM/DD");
+        FechaInicioC.setText("YYYY/MM/DD");
 
-        FechaFinalSJ1.setText("YYYY/MM/DD");
+        FechaFinalC.setText("YYYY/MM/DD");
 
-        TipoPaqueteSJ1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Electronicos", "ropa", "juguetes", "hogar", "comida", "quimicos", "herramientas" }));
+        TipoPaqueteC.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Electronico", "ropa", "juguete", "hogar", "comida", "quimicos", "herramientas" }));
+        TipoPaqueteC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TipoPaqueteCActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Tipo");
 
-        QueryAreaSJ1.setColumns(20);
-        QueryAreaSJ1.setRows(5);
-        jScrollPane2.setViewportView(QueryAreaSJ1);
+        QueryAreaC.setColumns(20);
+        QueryAreaC.setRows(5);
+        jScrollPane2.setViewportView(QueryAreaC);
 
         H1_Consultar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Misc-Web-Database-icon.png"))); // NOI18N
         H1_Consultar2.setText("Consultar");
@@ -268,11 +273,11 @@ public class Administrador extends javax.swing.JFrame {
                                     .addComponent(jLabel8))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(TipoPaqueteSJ1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(FechaFinalSJ1)
-                                    .addComponent(FechaInicioSJ2))))
+                                    .addComponent(TipoPaqueteC, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(FechaFinalC)
+                                    .addComponent(FechaInicioC))))
                         .addGap(18, 18, 18)
-                        .addComponent(QuerySJ1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(QueryC, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -289,18 +294,18 @@ public class Administrador extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(FechaInicioSJ2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(QuerySJ1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(FechaInicioC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(QueryC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(FechaFinalSJ1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(FechaFinalC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
-                            .addComponent(TipoPaqueteSJ1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(TipoPaqueteC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(H1_Consultar2))
@@ -313,7 +318,7 @@ public class Administrador extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -334,40 +339,40 @@ public class Administrador extends javax.swing.JFrame {
         String result;
         
         if (msgQuery.equals("Cantidad de dinero recaudado ")) {
-            Query = "SELECT sum(Monto) FROM Paquete_SanJose WHERE EstadoPaquete = 'retirado'";
+            Query = "SELECT sum(Monto) FROM Paquete WHERE EstadoPaquete = 'retirado'";
         }
         else if (msgQuery.equals("Cantidad de paquetes")){
-            Query = "SELECT COUNT(Cliente_Paquete_SanJose.IdPaquete) AS 'Cantidad' "
-                    + "FROM Cliente_Paquete_SanJose "
-                    + "INNER JOIN Cliente_SanJose ON Cliente_SanJose.IdCliente = Cliente_Paquete_SanJose.IdCliente "
-                    + "INNER JOIN Paquete_SanJose ON Paquete_SanJose.IdPaquete = Cliente_Paquete_SanJose.IdPaquete "
-                    + "WHERE Paquete_SanJose.EstadoPaquete = 'retirado' "
-                    + "AND  FechaIngreso  >= '"+ Inicio +"' AND FechaIngreso <= '"+ Final + "' "
-                    //+ "AND Cliente_SanJose.Cedula = 89765739"
-                    + "GROUP BY Cliente_Paquete_SanJose.IdCliente;";
+            Query = "SELECT COUNT(Cliente_Paquete.IdPaquete) AS 'Cantidad' "
+                    + "FROM Cliente_Paquete "
+                    + "INNER JOIN Cliente ON Cliente.IdCliente = Cliente_Paquete.IdCliente "
+                    + "INNER JOIN Paquete ON Paquete.IdPaquete = Cliente_Paquete.IdPaquete "
+                    + "WHERE Paquete.EstadoPaquete = 'retirado' "
+                    + "AND  FechaIngreso  >= '"+ Inicio +"' AND FechaIngreso <= '"+ Final+"' "
+                   // + "AND Cliente_.Cedula = 89765739"
+                    + "GROUP BY Cliente_Paquete.IdCliente;";
         }
         else if(msgQuery.equals("Montos promedios de los paquetes")){
-            Query = "SELECT AVG(Monto) AS 'PromedioMontoTotal' "
-            + "FROM  Paquete_SanJose "
+            Query = "SELECT AVG(Monto) AS 'PromedioMontoTotal'"
+            + "FROM  Paquete "
             + "WHERE EstadoPaquete = 'retirado' "
             + "AND FechaIngreso  >= '"+ Inicio +"' AND FechaIngreso <= '"+ Final +"';";
         }
         else if (msgQuery.equals( "Monto promedio pagado por paquete por cliente")){
             Query = "SELECT AVG(Monto) AS 'PromedioMontoTotal' "
-            + "FROM  Cliente_Paquete_SanJose "
-            + "INNER JOIN Paquete_SanJose ON Paquete_SanJose.IdPaquete = Cliente_Paquete_SanJose.IdPaquete "
-            + "INNER JOIN Cliente_SanJose ON Cliente_SanJose.IdCliente = Cliente_Paquete_SanJose.IdCliente "
+            + "FROM  Cliente_Paquete "
+            + "INNER JOIN Paquete ON Paquete.IdPaquete = Cliente_Paquete.IdPaquete "
+            + "INNER JOIN Cliente ON Cliente.IdCliente = Cliente_Paquete.IdCliente "
             + "WHERE EstadoPaquete = 'retirado' "
             + "and FechaIngreso  >= '"+Inicio+"' AND FechaIngreso <= '"+Final+"' "
-           // + "AND Cliente_SanJose.Cedula = 89765739 "
-            + "GROUP BY Cliente_Paquete_SanJose.IdCliente; ";
+            //+ "AND Cliente.Cedula = 89765739"
+            + "GROUP BY Cliente_Paquete.IdCliente; ";
         }
         else if(msgQuery.equals("Monto de paquete para un tipo de paquete")){
             if (Tipo != "Tipo"){
                 Query = "SELECT SUM(Monto) as 'MontoPorTipo' " +
-                "FROM  Paquete_SanJose " +
+                "FROM  Paquete " +
                 "WHERE EstadoPaquete = 'retirado' AND Tipo = '"+Tipo+"' " +
-                "AND FechaIngreso  >= '"+Inicio+"' AND FechaIngreso <= '"+Final+"' ";
+                "AND FechaIngreso  >= '"+Inicio+"' AND FechaIngreso <= '"+Final+"'";
             }
             else{
                 JOptionPane.showMessageDialog(null,"Favor ingresar tipo para la consulta");
@@ -385,47 +390,49 @@ public class Administrador extends javax.swing.JFrame {
 
     private void H1_Consultar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_H1_Consultar2ActionPerformed
         // TODO add your handling code here:
-        QueryAreaSJ.setText("");
-        String msgQuery = QuerySJ.getSelectedItem().toString();
+        QueryAreaC.setText("");
+        String msgQuery = QueryC.getSelectedItem().toString();
         String Query = "";
-        String Inicio = FechaInicioSJ.getText();
-        String Final = FechaFinalSJ.getText();
-        String Tipo = TipoPaqueteSJ.getSelectedItem().toString();
+        String Inicio = FechaInicioC.getText();
+        String Final = FechaFinalC.getText();
+        String Tipo = TipoPaqueteC.getSelectedItem().toString();
         String result;
-        
+        int cant = 1;
         if (msgQuery.equals("Cantidad de dinero recaudado ")) {
             Query = "SELECT sum(Monto) FROM Paquete WHERE EstadoPaquete = 'retirado'";
         }
         else if (msgQuery.equals("Cantidad de paquetes")){
-            Query = "SELECT COUNT(Cliente_Paquete_Cartago.IdPaquete) AS 'Cantidad'"
-                    + "FROM Cliente_Paquete_Cartago"
-                    + "INNER JOIN Cliente_Cartago ON Cliente_Cartago.IdCliente = Cliente_Paquete_Cartago.IdCliente"
-                    + "INNER JOIN Paquete_Cartago ON Paquete_Cartago.IdPaquete = Cliente_Paquete_Cartago.IdPaquete"
-                    + "WHERE Paquete_Cartago.EstadoPaquete = 'retirado'"
-                    + "AND  FechaIngreso  >= '"+ Inicio +"' AND FechaIngreso <= '"+ Final
-                    + "AND Cliente_Cartago.Cedula = 89765739"
-                    + "GROUP BY Cliente_Paquete_Cartago.IdCliente;";
+            Query = "SELECT COUNT(Cliente_Paquete.IdPaquete) AS 'Cantidad',Cliente_Paquete.IdCliente "
+                    + "FROM Cliente_Paquete "
+                    + "INNER JOIN Cliente ON Cliente.IdCliente = Cliente_Paquete.IdCliente "
+                    + "INNER JOIN Paquete ON Paquete.IdPaquete = Cliente_Paquete.IdPaquete "
+                    + "WHERE Paquete.EstadoPaquete = 'retirado' "
+                    + "AND  FechaIngreso  >= '"+ Inicio +"' AND FechaIngreso <= '"+ Final +"'"
+                   // + "AND Cliente_.Cedula = 89765739"
+                    + "GROUP BY Cliente_Paquete.IdCliente;";
+            cant = 2;
+            
         }
         else if(msgQuery.equals("Montos promedios de los paquetes")){
             Query = "SELECT AVG(Monto) AS 'PromedioMontoTotal'"
-            + "FROM  Paquete_Cartago"
-            + "WHERE EstadoPaquete = 'retirado'"
+            + "FROM  Paquete "
+            + "WHERE EstadoPaquete = 'retirado' "
             + "AND FechaIngreso  >= '"+ Inicio +"' AND FechaIngreso <= '"+ Final +"';";
         }
         else if (msgQuery.equals( "Monto promedio pagado por paquete por cliente")){
-            Query = "SELECT AVG(Monto) AS 'PromedioMontoTotal'"
-            + "FROM  Cliente_Paquete_Cartago"
-            + "INNER JOIN Paquete_Cartago ON Paquete_Cartago.IdPaquete = Cliente_Paquete_Cartago.IdPaquete"
-            + "INNER JOIN Cliente_Cartago ON Cliente_Cartago.IdCliente = Cliente_Paquete_Cartago.IdCliente"
-            + "WHERE EstadoPaquete = 'retirado'"
+            Query = "SELECT AVG(Monto) AS 'PromedioMontoTotal' "
+            + "FROM  Cliente_Paquete "
+            + "INNER JOIN Paquete ON Paquete.IdPaquete = Cliente_Paquete.IdPaquete "
+            + "INNER JOIN Cliente ON Cliente.IdCliente = Cliente_Paquete.IdCliente "
+            + "WHERE EstadoPaquete = 'retirado' "
             + "and FechaIngreso  >= '"+Inicio+"' AND FechaIngreso <= '"+Final+"' "
-            + "AND Cliente_Cartago.Cedula = 89765739"
-            + "GROUP BY Cliente_Paquete_Cartago.IdCliente;";
+            //+ "AND Cliente.Cedula = 89765739"
+            + "GROUP BY Cliente_Paquete.IdCliente; ";
         }
         else if(msgQuery.equals("Monto de paquete para un tipo de paquete")){
             if (Tipo != "Tipo"){
-                Query = "SELECT SUM(Monto) as 'MontoPorTipo'" +
-                "FROM  Paquete_Cartago " +
+                Query = "SELECT SUM(Monto) as 'MontoPorTipo' " +
+                "FROM  Paquete " +
                 "WHERE EstadoPaquete = 'retirado' AND Tipo = '"+Tipo+"' " +
                 "AND FechaIngreso  >= '"+Inicio+"' AND FechaIngreso <= '"+Final+"'";
             }
@@ -439,10 +446,10 @@ public class Administrador extends javax.swing.JFrame {
         System.out.println(msgQuery);
         
         System.out.println(Query);
-        result = msgQuery + " " +cnnDB.sendQuery(Query,"couriertecCartagoDB",1);
+        result = msgQuery + " " +cnnDB.sendQuery(Query,"couriertecCartagoDB",cant);
         
         
-        QueryAreaSJ.append(result);
+        QueryAreaC.append(result);
        
     }//GEN-LAST:event_H1_Consultar2ActionPerformed
 
@@ -477,14 +484,15 @@ public class Administrador extends javax.swing.JFrame {
             else{
                 System.out.println("No entro al Combobox");
             }
-        
-        //System.out.println(msgQuery2);
+
         System.out.println(Query);
-        //result = msgQuery2 + " " +cnnDB.sendQuery(Query,"couriertecDB");      
-        
         QueryAreaH.append(result);
     
     }//GEN-LAST:event_ConsultaCentralActionPerformed
+
+    private void TipoPaqueteCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TipoPaqueteCActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TipoPaqueteCActionPerformed
 
     /**
      * @param args the command line arguments
@@ -524,28 +532,22 @@ public class Administrador extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ConsultaCentral;
+    private javax.swing.JTextField FechaFinalC;
     private javax.swing.JTextField FechaFinalH;
     private javax.swing.JTextField FechaFinalSJ;
-    private javax.swing.JTextField FechaFinalSJ1;
+    private javax.swing.JTextField FechaInicioC;
     private javax.swing.JTextField FechaInicioH;
     private javax.swing.JTextField FechaInicioSJ;
-    private javax.swing.JTextField FechaInicioSJ2;
     private javax.swing.JButton H1_Consultar1;
     private javax.swing.JButton H1_Consultar2;
+    private javax.swing.JTextArea QueryAreaC;
     private javax.swing.JTextArea QueryAreaH;
-    private javax.swing.JTextArea QueryAreaH1;
-    private javax.swing.JTextArea QueryAreaH2;
-    private javax.swing.JTextArea QueryAreaH3;
     private javax.swing.JTextArea QueryAreaSJ;
-    private javax.swing.JTextArea QueryAreaSJ1;
+    private javax.swing.JComboBox<String> QueryC;
     private javax.swing.JComboBox<String> QueryH;
     private javax.swing.JComboBox<String> QuerySJ;
-    private javax.swing.JComboBox<String> QuerySJ1;
+    private javax.swing.JComboBox<String> TipoPaqueteC;
     private javax.swing.JComboBox<String> TipoPaqueteSJ;
-    private javax.swing.JComboBox<String> TipoPaqueteSJ1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -560,18 +562,9 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTabbedPane jTabbedPane3;
-    private javax.swing.JTabbedPane jTabbedPane4;
     // End of variables declaration//GEN-END:variables
 }
